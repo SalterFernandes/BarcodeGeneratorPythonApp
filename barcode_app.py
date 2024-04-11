@@ -34,14 +34,22 @@ class BarcodeApp(QWidget):
         self.layout.addWidget(self.label3)
         self.layout.addWidget(self.field3)
 
+        self.field1.returnPressed.connect(lambda: self.field2.setFocus())
+        self.field2.returnPressed.connect(lambda: self.field3.setFocus())
+        self.field3.returnPressed.connect(lambda: self.field1.setFocus())
+        self.field3.returnPressed.connect(self.generateBarcodes)
+
         self.generateButton = QPushButton('Generate Barcodes')
         self.exitButton = QPushButton('Exit App')
         self.generateButton.clicked.connect(self.generateBarcodes)
         self.exitButton.clicked.connect(self.exitApp)
         self.layout.addWidget(self.generateButton)
         self.layout.addWidget(self.exitButton)
+
         self.setLayout(self.layout)
 
+    def focus_next_widget(self, event, next_widget):
+        next_widget.focus()
     def generateBarcodes(self):
         data1 = self.field1.text()
         data2 = self.field2.text()
@@ -115,6 +123,9 @@ class BarcodeApp(QWidget):
 
         printer_dc.EndPage()
         printer_dc.EndDoc()
+        self.field1.clear()
+        self.field2.clear()
+        self.field3.clear()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
