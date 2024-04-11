@@ -7,3 +7,5 @@ Simple barcode generator and print app
 - Print to default windows printer
   
 
+
+![barcode_2](https://github.com/SalterFernandes/BarcodeGeneratorPythonApp/assets/19508706/11d59409-9a5f-4b87-9573-0436132ed5ef)
